@@ -8,6 +8,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+html { overflow-x: clip; }
 body {
   background-color: var(--bg); color: var(--text); font-family: var(--sans); font-size: 1.05rem; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden;
   background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
@@ -42,13 +43,14 @@ mark { background: var(--yellow); color: #0b2545; padding: 0 .15em; border-radiu
 .btn.ghost:hover { background: var(--text); color: #0b2545; }
 .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
 
+.hero > *, .contact > * { min-width: 0; }
 .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding-top: 64px; }
 .hero h1 { font-size: clamp(2.4rem, 5.6vw, 4.2rem); font-weight: 700; margin-bottom: 20px; }
 
 .bench { position: relative; min-height: 380px; }
 .editor { background: #071a33; border: 1px solid var(--line); border-radius: 8px; padding: 34px 18px 18px; width: 82%; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,.35); }
 .editor i { position: absolute; top: 8px; left: 14px; font: normal .72rem var(--mono); color: var(--muted); }
-.editor pre { font-family: var(--mono); font-size: .8rem; line-height: 1.8; color: var(--yellow); min-height: 9.5em; white-space: pre-wrap; }
+.editor pre { overflow-wrap: anywhere; font-family: var(--mono); font-size: .8rem; line-height: 1.8; color: var(--yellow); min-height: 9.5em; white-space: pre-wrap; }
 .editor pre::after { content: "▌"; color: var(--cyan); animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
@@ -120,8 +122,10 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10
   section { padding: 60px 20px; }
   .top nav a:not(.cta) { display: none; }
   .hero, .contact { grid-template-columns: 1fr; }
-  .bench { min-height: 360px; }
+  .bench { min-height: 0; display: grid; gap: 18px; }
+  .editor { width: 100%; }
+  .preview { position: relative; width: 88%; justify-self: end; transform: rotate(1.5deg); }
   .grid3,   .steps { grid-template-columns: 1fr 1fr; row-gap: 32px; }
   .steps::before { display: none; }
 }
-@media (max-width: 480px) { .editor { width: 94%; } .preview { width: 76%; } .steps { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .steps { grid-template-columns: 1fr; } .sheets { gap: 36px 0; } .block { grid-template-columns: 1fr; } .block div + div { border-left: 0; border-top: 2px solid #0b2545; } }
