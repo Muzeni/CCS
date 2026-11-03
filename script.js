@@ -59,6 +59,12 @@
     items.forEach(function (el) { el.classList.add('in'); });
   }
 
+  /* Link Shopee: cukup ganti alamat di bawah ini, semua tombol Shopee ikut berubah */
+  var SHOPEE_URL = 'https://shopee.co.id/GANTI-DENGAN-LINK-TOKO-ANDA';
+  if (SHOPEE_URL.indexOf('GANTI') === -1) {
+    document.querySelectorAll('[data-shopee]').forEach(function (a) { a.href = SHOPEE_URL; });
+  }
+
   /* Form kontak ke WhatsApp */
   var form = document.getElementById('waForm');
   var err = document.getElementById('err');
